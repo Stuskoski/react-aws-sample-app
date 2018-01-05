@@ -1,7 +1,9 @@
-import React    from 'react';
-import ReactDOM from 'react-dom';
-import Header   from './components/Header'
-import Game     from './components/Game'
+import React            from 'react';
+import ReactDOM         from 'react-dom';
+import Header           from './components/Header'
+import Game             from './components/Game'
+import BasicExample     from './components/BasicExample'
+import ProductViewTable from './components/ProductView'
 
 import './index.css';
 
@@ -13,4 +15,9 @@ ReactDOM.render(
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
+);
+
+ReactDOM.render(
+  <ProductViewTable />,
+  document.getElementById('footer')
 );
