@@ -2,8 +2,11 @@ import React from 'react';
 import Axios from 'axios';
 import {
   Table,
-  Image
+  Image,
+  Pagination
 } from 'react-bootstrap';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css'
 import Constants from '../constants/Constants';
 
 class ProductViewTable extends React.Component {
@@ -87,40 +90,36 @@ class ProductViewTable extends React.Component {
     }
 
 
-  render(){
-    return (
+    render() {
+      
+      const columns = [{
+        Header: 'Name',
+        accessor: 'name' // String-based value accessors!
+      }, {
+        Header: 'Detail',
+        accessor: 'detail',
+        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+      }, {
+        Header: 'Price',
+        accessor: 'price'
+      }, {
+        Header: props => <span>Info</span>, // Custom header components!
+        accessor: 'info'
+      }, {
+        Header: 'Offer',
+        accessor: 'offer'
+      }, {
+        Header: 'Image',
+        accessor: 'image',
+        Cell: props => <Image src={props.value} circle/>
+      }]
 
-      <Table striped bordered condensed hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Detail</th>
-            <th>Info</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.products.map(this.renderProduct)}
-        </tbody>
-      </Table>
-      )
-    }
-
-    renderProduct(product, index){
-      return (
-        <tr key ={index}>
-				<td>{index + 1}</td>
-				<td>{product.name}</td>
-        <td>{product.price}</td>
-        <td>{product.detail}</td>
-        <td>{product.info}</td>
-        <td>
-          <Image src={product.image} circle responsive />
-        </td>
-			</tr>
+      return(
+        <ReactTable
+          data={this.state.products}
+          columns={columns} />
       );
+
     }
   }
 
