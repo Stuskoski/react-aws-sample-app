@@ -13,11 +13,6 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
-
-ReactDOM.render(
   <ProductViewTable />,
-  document.getElementById('footer')
+  document.getElementById('root')
 );
